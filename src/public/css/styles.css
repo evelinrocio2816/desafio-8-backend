@@ -42,6 +42,7 @@ nav ul li a:hover {
   background-color: #ffe6ea; /* Rosa claro más claro al pasar el cursor */
   color: #666; /* Color de texto más oscuro al pasar el cursor */
 }
+
 /*PROFILE*/
 
 
@@ -94,7 +95,14 @@ h1 {
   text-align: center;
   margin-top: 100px;
 }
-
+.imgHome{
+  max-width: 100%;
+             height: auto;
+             margin-left: 20%;
+             border-radius: 15px;
+             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ 
+ }
 .Init {
   display: inline-block;
   margin-top: 20px;
@@ -124,11 +132,10 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 .container-loginForm {
   background-color: #fff; /* Fondo del formulario */
-  padding: 20px;
+  padding: 5%;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
 }

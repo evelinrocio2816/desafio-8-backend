@@ -78,7 +78,8 @@ class UserController {
         //Con DTO: 
         const userDto = new UserDTO(req.user.first_name, req.user.last_name, req.user.role);
         const isAdmin = req.user.role === 'admin';
-        res.render("profile", { user: userDto, isAdmin });
+        const cartId = req.user.cart.toString();
+        res.render("profile", { user: userDto, isAdmin , cartId});
     }
 
     async logout(req, res) {
@@ -94,17 +95,5 @@ class UserController {
     }
 
 
-///VERSION PARA GITHUB: 
-async githubAuthCallback(req, res) {
-    
-    try {
-        req.session.user = req.user;
-        req.session.login = true;
-        res.redirect("/products"); 
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error interno del servidor");
-    }
-}
 }
 module.exports = UserController;

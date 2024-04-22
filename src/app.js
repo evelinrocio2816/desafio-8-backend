@@ -6,8 +6,10 @@ const passport = require("passport");
 const initializePassport = require("./config/passport.config.js");
 const PORT = 8080;
 require("./db/database.js");
+const compression=require("express-compression")
 
-
+const usuariosRouter = require("./routes/user.router.js");
+const manejadorError = require("./middleware/error.js");
 
 const generateProducts=require("./routes/generateProducts.router.js")
 const productsRouter = require("./routes/products.router.js");
@@ -19,6 +21,13 @@ const userRouter = require("./routes/user.router.js");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("./src/public"));
+app.use(compression({
+    brotli:{
+        enabled:true,
+        zlib:{}
+    }
+}))
+
 
 //Passport 
 app.use(cookieParser());
@@ -41,6 +50,11 @@ app.use("/api/carts", cartsRouter);
 app.use("/api/user", userRouter);
 app.use("/", viewsRouter);
 app.use("/", generateProducts)
+
+app.use("/usuarios", usuariosRouter);
+app.use(manejadorError);
+
+
 
 const httpServer = app.listen(PORT, () => {
     console.log(`Servidor escuchando en el Puerto: https://localhost:${PORT}`);

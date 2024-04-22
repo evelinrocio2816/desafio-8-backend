@@ -3,9 +3,9 @@ const jwt = require("passport-jwt");
 const JWTStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
 const UserModel = require("../models/user.models.js");
-const GithubUserModel= require("../models/githubUser.models.js")
 
-const GitHubStrategy = require("passport-github2");
+
+
 
 const initializePassport = () => {
     passport.use("jwt", new JWTStrategy({
@@ -23,39 +23,11 @@ const initializePassport = () => {
             return done(error);
         }
     }));
-     /* PASSPORT CON GITHUB */
 
-  passport.use(
-    "github",
-    new GitHubStrategy(
-      {
-        clientID: "Iv1.bbd6c94a8d592fa9",
-        clientSecret: "31a0a8185f59ab6d185ae68eba993dcb3ec7b6da",
-        callbackURL: "http://localhost:8080/api/session/githubcallback"
-      },
-      async (accessToken, refreshToken, profile, done) => {
-        console.log("profile:", profile);
-        try {
-          let user = await GithubUserModel.findOne({ email: profile._json.email });
-          if (!user) {
-            let newUser = {
-              first_name: profile._json.name,
-              last_name: "",
-              age: 29,
-              email: profile._json.email,
-              password: ""
-            }
-            let result = await GithubUserModel.create(newUser);
-            done(null, result);
-          } else {
-            done(null, user);
-          }
-        } catch (error) {
-          return done(error);
-        }
-      }
-    )
-  );
+
+
+    
+  
 
 }
 
