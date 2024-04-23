@@ -1,7 +1,4 @@
-//clase para generar mis propios errores
-
-
-class CustomError{
+class CustomErrors{
     static createError({nombre = "Error", causa = "desconcido", mensaje, codigo = 1}) {
         const error = new Error(mensaje);
         error.name = nombre;
@@ -10,8 +7,5 @@ class CustomError{
         throw error;
     }
 }
-module.exports= CustomError
 
-
-//Creamos una clase para generar nuestros propios errores: 
-
+module.exports = CustomErrors

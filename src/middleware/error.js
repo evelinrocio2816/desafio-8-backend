@@ -1,10 +1,10 @@
 const { EErrors } = require("../services/errors/enums.js");
 
-const manejadorError = (error, req, res, next) => {
+const handleErrors = (error, req, res, next) => {
     console.log(error.causa);
-    console.log("Hola, hay alguien con vida aca? ");
+    console.log("Hola");
     switch (error.code) {
-        case EErrors.TIPO_INVALIDO:
+        case EErrors.TIPO_INVALID:
             res.send({ status: "error", error: error.nombre })
             break;
         default:
@@ -12,4 +12,4 @@ const manejadorError = (error, req, res, next) => {
     }
 }
 
-module.exports = manejadorError;
+module.exports = handleErrors;

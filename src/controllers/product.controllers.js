@@ -62,6 +62,13 @@ class ProductController {
             res.status(500).json({ error: "Error interno del servidor al eliminar el producto" }); 
         }
     }
+    async mockingProducts(req, res){
+        const products = [];
+        for(let i = 0 ; i <100; i ++ ){
+            products.push(generateProducts())
+        }
+        res.json(products)
+    }
 }
 
 module.exports = ProductController;

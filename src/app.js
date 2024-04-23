@@ -8,15 +8,13 @@ const PORT = 8080;
 require("./db/database.js");
 const compression=require("express-compression")
 
-const usuariosRouter = require("./routes/user.router.js");
-const manejadorError = require("./middleware/error.js");
-
-const generateProducts=require("./routes/generateProducts.router.js")
 const productsRouter = require("./routes/products.router.js");
 const cartsRouter = require("./routes/carts.router.js");
 const viewsRouter = require("./routes/views.router.js");
 const userRouter = require("./routes/user.router.js");
 
+const mockingRouter = require("./routes/mocking.router.js")
+const handleErrors= require("./middleware/error.js")
 //Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,7 +25,7 @@ app.use(compression({
         zlib:{}
     }
 }))
-
+app.use(handleErrors)
 
 //Passport 
 app.use(cookieParser());
@@ -49,10 +47,7 @@ app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/user", userRouter);
 app.use("/", viewsRouter);
-app.use("/", generateProducts)
-
-app.use("/usuarios", usuariosRouter);
-app.use(manejadorError);
+app.use("/" , mockingRouter)
 
 
 
