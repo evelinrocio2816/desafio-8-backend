@@ -20,16 +20,6 @@ class UserController {
           codigo: EErrors.TIPO_INVALID,
         });
       }
-      const user = {
-        first_name,
-        last_name,
-        email,
-        password,
-        age
-    }
-      user.push(user);
-      console.log(user);
-      res.send({ status: "success", payload: user });
 
       //Creo un nuevo carrito:
       const newCart = new CartModel();
