@@ -15,16 +15,18 @@ class UserController {
       if (existUser) {
         throw CustomErrors.createError({
           nombre: "Usuario nuevo",
-          causa: generateInfoError({ nombre, apellido, email }),
+          cause: generateInfoError(existUser.email),
           mensaje: "Error al intentar crear un usuario",
           codigo: EErrors.TIPO_INVALID,
         });
       }
       const user = {
-        nombre,
-        apellido,
+        first_name,
+        last_name,
         email,
-      };
+        password,
+        age
+    }
       user.push(user);
       console.log(user);
       res.send({ status: "success", payload: user });
